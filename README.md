@@ -60,15 +60,15 @@ Each option is described below.
 
 > The path to the api modules `hatchly-path` value. This can be modified in the Hatchly api config file, so make sure this path corresponds to that value.
 
-- Default: `'_hatchly/api'`
+- Default: `'api'`
 - Alias: `hatchly.apiPath`
 - Type: `string`
 
 ### `apiUrl`
 
-> The full api url prefix for hatchly-api routes. By default this is made up of the `apiBase` and the `apiUrl`, but can be overwritten in full.
+> The full api url prefix for the hatchly pages endpoint. By default this is made up of the `apiBase`, `apiUrl` and `graphQLPath`, but can be overwritten in full.
 
-- Default: `${ process.env.API_BASE }/_hatchly/api`
+- Default: `${ process.env.API_BASE }/api/pages`
 - Type: `string`
 
 ### `graphQLPath`
