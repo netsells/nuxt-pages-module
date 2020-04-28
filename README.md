@@ -165,6 +165,25 @@ The default usage for this component assumes that your page data is available as
 </ul>
 ```
 
+If your top level data is different to `page` you can specify a different object as the first argument, and the other arguments will shift accordingly.
+
+```vue
+<h1>{{ $attr(pageData, 'header.title') }}</h1>
+```
+
+You can also use this in sub components/loops as a safe alternative to nested data structures, where the first argument would be whatever dataset you were accessing.
+
+```vue
+<ul>
+    <li 
+        v-for="item in $attr('content.items', [])" 
+        :key="item.title"
+    >
+        {{ $attr(item, 'image.name') }}
+    </li>
+</ul>
+```
+
 ##### Convenience modifiers
 
 By default this method will do the following things to certain attribute types:
