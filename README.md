@@ -192,3 +192,29 @@ By default this method will do the following things to certain attribute types:
 - If accessing a page uri, it will automatically prefix the path with a `/` in order to ensure correct navigations within the router.
 - If accessing a `page-link` object, it will automatically prefix the uri with a `/` in order to ensure correct navigations within the router.
 - For attributes that return a nested `value` property, we return this by default instead of having to access the full `$attr('attribute.path.value')` path.
+
+### WYSIWYG Attribute Component
+
+When using WYSIWYG attributes, it's recommended to use the provided `<wysiwyg-attr />` component rather than manually binding to an element with `v-html`. This component essentially does that, via the `html` prop, but also allows for converting internal links to router transitions, rather than forcing an entirely new page load.
+
+```vue
+<wysiwyg-attr
+    :html="$attr('body.content')"
+/>
+```
+
+This component accepts two props:
+
+#### `html`
+
+> The value of your wysiwyg attribute.
+
+- Default: `''`
+- Type: `string`
+
+#### `tag`
+
+> The tag used to wrap the wysiwyg attribute content.
+
+- Default: `'div'`
+- Type: `string`
