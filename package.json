@@ -16,7 +16,9 @@
         "install-peers": "install-peers"
     },
     "dependencies": {
-        "@nuxtjs/apollo": "^4.0.0-rc19"
+        "@nuxtjs/apollo": "^4.0.0-rc19",
+        "html-to-vdom": "^0.7.0",
+        "virtual-dom": "^2.1.1"
     },
     "devDependencies": {
         "@netsells/eslint-config": "^3.4.0",

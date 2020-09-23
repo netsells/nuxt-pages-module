@@ -1,77 +1,76 @@
-<template>
-    <component
-        :is="tag"
-        class="wysiwyg-attr"
-        v-html="html"
-    />
-</template>
-
 <script>
+    import VNode from 'virtual-dom/vnode/vnode';
+    import VText from 'virtual-dom/vnode/vtext';
+    import htmlToVdom from 'html-to-vdom';
+
+    const convertHTML = htmlToVdom({
+        VNode,
+        VText,
+    });
+
+    /**
+     * Convert a node to vue render functions.
+     *
+     * @param {Function} h
+     * @param {object} node
+     *
+     * @returns {object}
+     */
+    function toVdom(h, node) {
+        const { attributes, ...properties } = node.properties || {};
+
+        const attrs = {
+            ...attributes,
+            ...properties,
+        };
+        const props = {};
+
+        let { tagName } = node;
+
+        const appUrl = process.env.APP_URL;
+        const apiUrl = process.env.API_URL;
+
+        if (
+            tagName === 'a'
+            && attrs.href
+            && (
+                attrs.href.startsWith(appUrl)
+                || attrs.href.startsWith(apiUrl)
+            )
+        ) {
+            tagName = 'nuxt-link';
+            props.to = attrs.href
+                .replace(appUrl, '')
+                .replace(apiUrl, '');
+
+            delete attrs.href;
+        }
+
+        return node.text
+            ? node.text
+            : h(tagName, {
+                attrs,
+                props,
+            }, (node.children || []).map((node) => toVdom(h, node)));
+    }
+
     export default {
         name: 'wysiwyg-attr',
+
+        functional: true,
 
         props: {
             html: {
                 type: String,
                 default: '',
             },
-            tag: {
-                type: String,
-                default: 'div',
-            },
         },
 
-        mounted() {
-            this.enableClickHandlers();
-        },
+        render(h, { props }) {
+            const vDom = convertHTML(props.html);
 
-        destroy() {
-            (this.clickHandlers || []).forEach((element) => {
-                element.removeEventListener(this.internalClickHandler);
-            });
-        },
-
-        methods: {
-            enableClickHandlers() {
-                this.clickHandlers = [
-                    ...this.$el.querySelectorAll('a[href^="<%- options.apiBase %>"]'),
-                    ...this.$el.querySelectorAll('a[href^="/"]'),
-                ].map((element) => {
-                    element.addEventListener('click', this.internalClickHandler);
-
-                    return element;
-                });
-            },
-
-            /**
-             * Handle the click event and trigger an internal navigation.
-             *
-             * @param {MouseEvent} e
-             */
-            internalClickHandler(e) {
-                const { currentTarget } = e;
-
-                if (e.metaKey) {
-                    return;
-                }
-
-                if (currentTarget.target && currentTarget.target !== '_self') {
-                    return;
-                }
-
-                e.preventDefault();
-
-                let link = currentTarget.href;
-
-                [
-                    '<%- options.apiBase %>',
-                    '<%- process.env.APP_URL %>',
-                ].forEach((url) =>
-                    link = link.replace(url, '')
-                );
-
-                this.$router.push(link);
-            },
+            return (Array.isArray(vDom) ? vDom : [vDom])
+                .map((node) => toVdom(h, node));
         },
     };
 </script>
