@@ -82,26 +82,9 @@ Each option is described below.
 
 ### Apollo
 
-This module will automatically install and register the `@nuxtjs/apollo` module and set up the default client.
+This module will automatically install and register the `nuxt-graphql-request` module and set up the client.
 
-It will also provide a helper for interacting with the client, so instead of doing this:
-
-```js
-async asyncData({ app, $route }) {
-    const client = app.apolloProvider.defaultClient;
-
-    const { data } = await client.query({
-        query: ArticleQuery,
-        variables: {
-            uri: $route.params.article,
-        },
-    });
-
-    return data;
-},
-```
-
-You can instead use the helper:
+It will also provide a helper for interacting with the client:
 
 ```js
 async asyncData({ app }) {

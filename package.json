@@ -16,8 +16,9 @@
         "install-peers": "install-peers"
     },
     "dependencies": {
-        "@nuxtjs/apollo": "^4.0.0-rc19",
+        "graphql": "^15.3.0",
         "html-to-vdom": "^0.7.0",
+        "nuxt-graphql-request": "samturrell/nuxt-graphql-request",
         "virtual-dom": "^2.1.1"
     },
     "devDependencies": {
