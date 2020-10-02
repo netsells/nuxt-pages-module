@@ -80,9 +80,9 @@ Each option is described below.
 
 ## Features
 
-### Apollo
+### GraphqlQL request client
 
-This module will automatically install and register the `nuxt-graphql-request` module and set up the client.
+This module will automatically install and register the [nuxt-graphql-request](https://www.npmjs.com/package/nuxt-graphql-request) module and set up the client.
 
 It will also provide a helper for interacting with the client:
 
@@ -98,26 +98,19 @@ async asyncData({ app }) {
 
 This method accepts the following arguments:
 
-`$hatchlyGraphQL(query, variables, config)`
+`$hatchlyGraphQL(query, variables)`
 
 #### `query`
 
-> The GraphQL query for the apollo client.
+> The GraphQL query for the client.
 
 - Default: `undefined`
-- Type: `string`
+- Type: `string` or GraphQL AST
 - `required`
 
 #### `variables`
 
 > Variables to pass into the query.
-
-- Default: `{}`
-- Type: `object`
-
-#### `config`
-
-> Additional config to pass into the `query()` method on the Apollo client.
 
 - Default: `{}`
 - Type: `object`
