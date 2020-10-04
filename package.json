@@ -1,7 +1,7 @@
 {
     "name": "@hatchly/nuxt-pages-module",
     "description": "Official nuxt integration for the Hatchly/Pages module",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "main": "./lib/index.js",
     "license": "MIT",
     "repository": {
