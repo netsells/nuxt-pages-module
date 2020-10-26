@@ -17,9 +17,8 @@
     },
     "dependencies": {
         "graphql": "^15.3.0",
-        "html-to-vdom": "^0.7.0",
-        "nuxt-graphql-request": "samturrell/nuxt-graphql-request",
-        "virtual-dom": "^2.1.1"
+        "graphql-request": "^3.2.0",
+        "nuxt-graphql-request": "samturrell/nuxt-graphql-request"
     },
     "devDependencies": {
         "@netsells/eslint-config": "^3.4.0",

@@ -171,7 +171,7 @@ By default this method will do the following things to certain attribute types:
 
 ### WYSIWYG Attribute Component
 
-When using WYSIWYG attributes, it's recommended to use the provided `<wysiwyg-attr />` component rather than manually binding to an element with `v-html`. This component will convert the html to render functions and return the content directly rather than having the content wrapped in a wrapper element such as a `div`. It also  allows for converting internal links to router transitions, rather than forcing an entirely new page load.
+When using WYSIWYG attributes, it's recommended to use the provided `<wysiwyg-attr />` component rather than manually binding to an element with `v-html`. This component will convert the html to render functions and return the content within a tag you have provided, or div by default. Using render functions allows the html to be rendered as elements within the virtual dom that can easily inherit styling. It also allows for converting internal links to router transitions, rather than forcing an entirely new page load.
 
 ```vue
 <wysiwyg-attr
@@ -186,6 +186,13 @@ This component accepts two props:
 > The value of your wysiwyg attribute.
 
 - Default: `''`
+- Type: `string`
+
+#### `tag`
+
+> The tag of the wrapper component.
+
+- Default: `'div'`
 - Type: `string`
 
 ## Storybook
