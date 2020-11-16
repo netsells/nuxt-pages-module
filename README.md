@@ -13,18 +13,10 @@ Register the module in your nuxt applications config file:
 ```js
 module.exports = {
     // Nuxt config
-    modules: {
+    modules: [
         // Other Modules
-        ['@hatchly/nuxt-pages-module', {
-            // Options
-        }],
-    },
-
-    hatchly: {
-        pages: {
-            // Options can also be defined here
-        },
-    },
+        '@hatchly/nuxt-pages-module',
+    ],
 };
 ```
 
@@ -34,49 +26,26 @@ Add the API url to your .env:
 API_BASE=http://my-application.localhost
 ```
 
-## Options
+## Config
 
-The options object can contain the following values: 
+Supply your graphql endpoint to the module via the `publicRuntimeConfig` and `privateRuntimeConfig` objects, e.g.:
 
 ```js
-{
-    apiBase: '',
-    apiPath: '',
-    apiUrl: '',
-    graphQLPath: '',
-},
+module.exports = {
+    /** ... */
+    publicRuntimeConfig: {
+        /** ... */
+        GRAPHQL_ENDPOINT: process.env.API_GRAPHQL_URL,
+    },
+    /** ... */
+    privateRuntimeConfig: {
+        /** ... */
+        GRAPHQL_ENDPOINT: process.env.API_GRAPHQL_URL,
+    },
+};
 ```
 
-Each option is described below.
-
-### `apiBase`
-
-> The url of your Hatchly site. This is should be updated in your .env rather than hardcoding a value here.
-
-- Default: `process.env.API_BASE`
-- Type: `string`
-
-### `apiPath`
-
-> The path to the api modules `hatchly-path` value. This can be modified in the Hatchly api config file, so make sure this path corresponds to that value.
-
-- Default: `'api'`
-- Alias: `hatchly.apiPath`
-- Type: `string`
-
-### `apiUrl`
-
-> The full api url prefix for the hatchly pages endpoint. By default this is made up of the `apiBase`, `apiUrl` and `graphQLPath`, but can be overwritten in full.
-
-- Default: `${ process.env.API_BASE }/api/pages`
-- Type: `string`
-
-### `graphQLPath`
-
-> The path to the graphQL endpoint.
-
-- Default: `pages`
-- Type: `string`
+If the api is accessible on an internal address, you can skip dns lookup and replace the env variable in `privateRuntimeConfig` object with a different variable pointing to this address. 
 
 ## Features
 
@@ -87,13 +56,15 @@ This module will automatically install and register the [nuxt-graphql-request](h
 It will also provide a helper for interacting with the client:
 
 ```js
-async asyncData({ app }) {
-    const { data } = await app.$hatchlyGraphQL(HomepageQuery, {
-        uri: $route.params.article,
-    });
-
-    return data;
-},
+export default {
+    async asyncData({ app }) {
+        const data = await app.$hatchlyGraphQL(HomepageQuery, {
+            uri: $route.params.article,
+        });
+    
+        return data;
+    },
+};
 ```
 
 This method accepts the following arguments:
