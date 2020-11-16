@@ -20,12 +20,6 @@ module.exports = {
 };
 ```
 
-Add the API url to your .env:
-
-```
-API_BASE=http://my-application.localhost
-```
-
 ## Config
 
 Supply your graphql endpoint to the module via the `publicRuntimeConfig` and `privateRuntimeConfig` objects, e.g.:
