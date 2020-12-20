@@ -15,12 +15,39 @@ module.exports = {
     // Nuxt config
     modules: [
         // Other Modules
-        '@hatchly/nuxt-pages-module',
+        ['@hatchly/nuxt-pages-module', {
+            // Options
+        }],
     ],
+
+    hatchly: {
+        pages: {
+            // Options can also be defined here
+        },
+    },
 };
 ```
 
-## Config
+## Options
+
+The options object can contain the following values:
+
+```js
+{
+    cacheTimeout: '',
+},
+```
+
+Each option is described below.
+
+### `cacheTimeout`
+
+> The duration, in seconds, until the cached date is refreshed. The cache can be disabled completely by passing a falsey value.
+
+- Default: `3600` (1 hour)
+- Type: `number|boolean`
+
+## Runtime Config
 
 Supply your graphql endpoint to the module via the `publicRuntimeConfig` and `privateRuntimeConfig` objects, e.g.:
 
