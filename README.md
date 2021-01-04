@@ -34,7 +34,8 @@ The options object can contain the following values:
 
 ```js
 {
-    cacheTimeout: '',
+    cacheTimeout: Number,
+    disableBackgroundFetch: Boolean,
 },
 ```
 
@@ -46,6 +47,13 @@ Each option is described below.
 
 - Default: `3600` (1 hour)
 - Type: `number|boolean`
+
+### `disableBackgroundFetch`
+
+> By default, if the cache is enabled, all requests will still happen regardless, but will instead happen asynchronously on the server side after the cached data has been returned. Set this option to `true` to prevent this functionality entirely, and always rely on traditional caching.
+
+- Default: `false`
+- Type: `boolean`
 
 ## Runtime Config
 
