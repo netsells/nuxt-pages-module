@@ -304,7 +304,7 @@ concat-map@0.0.1:
   resolved "https://npm.netsells.tools/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-cross-fetch@^3.0.5, cross-fetch@^3.0.6:
+cross-fetch@^3.0.6:
   version "3.0.6"
   resolved "https://npm.netsells.tools/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
   integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
@@ -630,19 +630,19 @@ globals@^12.1.0:
   dependencies:
     type-fest "^0.8.1"
 
-graphql-request@^3.1.0:
-  version "3.1.0"
-  resolved "https://npm.netsells.tools/graphql-request/-/graphql-request-3.1.0.tgz#c487488a1aa7b9a0f02335026b4ec897d645f9d4"
-  integrity sha512-Flg2Bd4Ek9BDJ5qacZC/iYuiS3LroHxQTmlUnfqjo/6jKwowY25FVtoLTnssMCBrYspRYEYEIfF1GN8J3/o5JQ==
-  dependencies:
-    cross-fetch "^3.0.5"
-    extract-files "^9.0.0"
-    form-data "^3.0.0"
-
 graphql-request@^3.2.0:
   version "3.2.0"
   resolved "https://npm.netsells.tools/graphql-request/-/graphql-request-3.2.0.tgz#d356bbea6dc496ab7969aa0892a0ba9ac938a347"
   integrity sha512-s4zIfQsDkGUv5ECCkGq55Png7hJjFBV7PMIadB403VDaXv0T1RThPSRgZM1hiKgB420rOItkR5BDQ3vPvaAWqw==
+  dependencies:
+    cross-fetch "^3.0.6"
+    extract-files "^9.0.0"
+    form-data "^3.0.0"
+
+graphql-request@^3.4.0:
+  version "3.4.0"
+  resolved "https://npm.netsells.tools/graphql-request/-/graphql-request-3.4.0.tgz#3a400cd5511eb3c064b1873afb059196bbea9c2b"
+  integrity sha512-acrTzidSlwAj8wBNO7Q/UQHS8T+z5qRGquCQRv9J1InwR01BBWV9ObnoE+JS5nCCEj8wSGS0yrDXVDoRiKZuOg==
   dependencies:
     cross-fetch "^3.0.6"
     extract-files "^9.0.0"
@@ -879,12 +879,13 @@ node-fetch@2.6.1:
   resolved "https://npm.netsells.tools/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
-nuxt-graphql-request@samturrell/nuxt-graphql-request:
-  version "3.1.2"
-  resolved "https://codeload.github.com/samturrell/nuxt-graphql-request/tar.gz/49239b651668c5ccd29a059b22b0698c73ed2b3f"
+nuxt-graphql-request@^3.2.0:
+  version "3.2.0"
+  resolved "https://npm.netsells.tools/nuxt-graphql-request/-/nuxt-graphql-request-3.2.0.tgz#7de1aee04e551fae3cae3f5be979e26c966843c9"
+  integrity sha512-Xlg7kw6xbwyBcxovdS9ugCNhWOlgTOxoyOcVmlXxvCgd3WWnnwfqRDk4EzhfwjnlRNRA0PbF82PWLxOiHBvZRQ==
   dependencies:
     cross-fetch "^3.0.6"
-    graphql-request "^3.1.0"
+    graphql-request "^3.4.0"
 
 once@^1.3.0:
   version "1.4.0"

@@ -57,14 +57,16 @@ Each option is described below.
 
 ## Runtime Config
 
-Supply your graphql endpoint to the module via the `publicRuntimeConfig` and `privateRuntimeConfig` objects, e.g.:
+By default, this package will utilise `API_URL` and `API_URL_BROWSER` variables as defined in your env. These are injected as runtime variables for you.
+
+You can supply your graphql endpoint manually to the module via the `publicRuntimeConfig` and `privateRuntimeConfig` objects, e.g.:
 
 ```js
 module.exports = {
     /** ... */
     publicRuntimeConfig: {
         /** ... */
-        GRAPHQL_ENDPOINT: process.env.API_GRAPHQL_URL,
+        GRAPHQL_ENDPOINT: process.env.API_GRAPHQL_URL_BROWSER,
     },
     /** ... */
     privateRuntimeConfig: {
