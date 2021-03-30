@@ -58,7 +58,7 @@ function getRepeatableInstance(value) {
     return value;
 }
 
-Vue.prototype.$attr = function(...args) {
+const attr = function(...args) {
     let context = this.hasOwnProperty('page')
         ? this.page
         : {};
@@ -79,3 +79,7 @@ Vue.prototype.$attr = function(...args) {
 
     return value;
 };
+
+Vue.prototype.$attr = attr;
+
+export default attr;

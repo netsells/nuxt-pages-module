@@ -32,6 +32,11 @@ export default function PagesModule(moduleOptions = {}) {
         fileName: './hatchly-pages/logger.js',
     });
 
+    this.addTemplate({
+        src: resolve(__dirname, './attr.js'),
+        fileName: './hatchly-pages/attr.js',
+    });
+
     this.requireModule('nuxt-graphql-request');
 
     const { dst } = this.addTemplate({
