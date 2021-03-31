@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import Vue from 'vue';
 import logger from './logger';
-import './attr';
+import attr from './attr';
 import { WysiwygAttr } from './components/WysiwygAttr';
 
 <% if (options.cacheTimeout) { %>
