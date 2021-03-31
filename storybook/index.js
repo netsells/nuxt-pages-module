@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import '../dist/attr';
-import { WysiwygAttr } from '../dist/components/WysiwygAttr';
+import '../lib/attr';
+import { WysiwygAttr } from '../lib/components/WysiwygAttr';
 
 Vue.component('wysiwyg-attr', WysiwygAttr({}))
