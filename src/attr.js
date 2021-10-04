@@ -73,6 +73,10 @@ const attr = function(...args) {
 
     let value = get(context, path, fallback);
 
+    if (typeof value !== 'undefined') {
+        value = JSON.parse(JSON.stringify(value));
+    }
+
     value = getNestedValue(value);
     value = formatUri(value, path);
     value = getRepeatableInstance(value);
