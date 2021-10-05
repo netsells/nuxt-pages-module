@@ -22,9 +22,11 @@ export default function PagesModule(moduleOptions = {}) {
         logger.info('Falsey cacheTimeout provided, cache will not be used.');
     }
 
-    this.options.publicRuntimeConfig.GRAPHQL_ENDPOINT = this.options.publicRuntimeConfig.GRAPHQL_ENDPOINT
+    this.options.publicRuntimeConfig.GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT
+        || this.options.publicRuntimeConfig.GRAPHQL_ENDPOINT
         || `${ process.env.API_URL_BROWSER || process.env.API_URL }/api/pages`;
-    this.options.privateRuntimeConfig.GRAPHQL_ENDPOINT = this.options.privateRuntimeConfig.GRAPHQL_ENDPOINT
+    this.options.privateRuntimeConfig.GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT
+        || this.options.privateRuntimeConfig.GRAPHQL_ENDPOINT
         || `${ process.env.API_URL }/api/pages`;
 
     this.addTemplate({
