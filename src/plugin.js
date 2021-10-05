@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import Vue from 'vue';
 import logger from './logger';
 import attr from './attr';
@@ -19,12 +18,12 @@ const cache = {};
  *
  * @returns {Promise<void>}
  */
-export default async function({ app, $config, $graphql, route }, inject) {
-    inject('hatchlyGraphQL', (query, variables = {}) => {
+export default async function(context, inject) {
+    const hatchlyGraphQL = (query, variables = {}) => {
         <% if (!options.cacheTimeout) { %>
-            return $graphql.request(query, variables);
+            return context.$graphql.request(query, variables);
         <% } else { %>
-            const forceClear = route.query.cache === 'clear';
+            const forceClear = context.route.query.cache === 'clear';
 
             const now = () => Math.round(new Date().getTime() / 1000);
             const generateCacheTimeout = () => now() + <%- options.cacheTimeout %>;
@@ -36,7 +35,7 @@ export default async function({ app, $config, $graphql, route }, inject) {
 
             const cachedEntry = cache[key];
 
-            const request = () => $graphql.request(query, variables).then((data) => {
+            const request = () => context.$graphql.request(query, variables).then((data) => {
                 cache[key] = {
                     timestamp: generateCacheTimeout(),
                     data,
@@ -65,9 +64,12 @@ export default async function({ app, $config, $graphql, route }, inject) {
 
             return Promise.resolve(cachedEntry.data);
         <% } %>
-    });
+    };
+
+    context.$hatchlyGraphQL = hatchlyGraphQL;
+    inject('hatchlyGraphQL', hatchlyGraphQL);
 
     Vue.prototype.$attr = attr;
 
-    Vue.component('wysiwyg-attr', () => import('./components/WysiwygAttr').then(({ WysiwygAttr }) => WysiwygAttr($config)));
+    Vue.component('wysiwyg-attr', () => import('./components/WysiwygAttr').then(({ WysiwygAttr }) => WysiwygAttr(context.$config)));
 };
