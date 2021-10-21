@@ -14,7 +14,7 @@ const cache = {};
  * @param {object} context.app
  * @param {object} context.$config
  * @param {object} context.route
- * @param {function} inject
+ * @param {Function} inject
  *
  * @returns {Promise<void>}
  */
