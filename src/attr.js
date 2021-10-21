@@ -6,7 +6,7 @@ import get from 'lodash/get';
  *
  * @param {object|string|number} value
  *
- * @return {object|string|number}
+ * @returns {object|string|number}
  */
 function getNestedValue(value) {
     if (value && value.value) {
@@ -22,7 +22,7 @@ function getNestedValue(value) {
  * @param {object|string|number} value
  * @param {string} path
  *
- * @return {object|string|number}
+ * @returns {object|string|number}
  */
 function formatUri(value, path = '') {
     if (value && value.uri) {
@@ -48,7 +48,7 @@ function formatUri(value, path = '') {
  *
  * @param {object|string|number} value
  *
- * @return {object|string|number}
+ * @returns {object|string|number}
  */
 function getRepeatableInstance(value) {
     if (value && value.instance && Array.isArray(value.instance)) {
